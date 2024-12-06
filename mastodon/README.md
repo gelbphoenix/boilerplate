@@ -1,6 +1,6 @@
 # Mastodon with docker
 
-> [!NOTICE]
+> [!NOTE]
 > Mastodon is developed by the Mastodon gGmbH and the licence of Mastodon is applicable for this.
 
 ## How to setup?
