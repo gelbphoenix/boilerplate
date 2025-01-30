@@ -1,0 +1,11 @@
+[YOUR UPTIMEKUMA DOMAIN] {
+	header {
+    -Server
+		Strict-Transport-Security: "max-age=31536000; includeSubDomains"
+		X-XSS-Protection "1; mode=block"
+    X-Robots-Tag "noindex,nofollow"
+		X-Content-Type-Options "nosniff"
+	}
+
+	reverse_proxy localhost:3001
+}

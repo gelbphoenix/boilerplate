@@ -1,0 +1,10 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    volumes:
+      - ./uptime-kuma-data:/app/data
+      # - /data/uptime-kuma:/app/data # Uncomment if you have a data directory - comment the local line if that's the case
+    ports:
+      - 3001:3001
+    restart: always
