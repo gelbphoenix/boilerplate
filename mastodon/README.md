@@ -1,4 +1,4 @@
-# Mastodon with docker
+# Mastodon via docker
 
 > [!NOTE]
 > Mastodon is developed by the Mastodon gGmbH and the licence of Mastodon is applicable for this.
