@@ -74,7 +74,7 @@ ES_PORT=9200
 11. Add the following to the crontab of the root user
 
 ```crontab
-0 */3 * * * /path/to/auto-cleanup.sh
+0 0 * * * /path/to/auto-cleanup.sh
 ```
 
 12. Start the Mastodon server
