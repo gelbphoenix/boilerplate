@@ -37,7 +37,8 @@ services:
       - default
       - proxy
     volumes:
-      - /data/mastodon/public/system:/mastodon/public/system
+      - ./system:/mastodon/public/system
+      #- /data/mastodon/public/system:/mastodon/public/system # Uncomment if you have a data directory - comment the local line if that's the case
 
   web:
     container_name: 'mastodon-web'
@@ -64,8 +65,10 @@ services:
       - redis
       - es
     volumes:
-      - /data/mastodon/public/system:/mastodon/public/system
-      - /data/mastodon/public/robots.txt:/mastodon/public/robots.txt:ro
+      - ./system:/mastodon/public/system
+      #- /data/mastodon/public/system:/mastodon/public/system # Uncomment if you have a data directory - comment the local line if that's the case
+      - ./system:/mastodon/public/robots.txt:ro
+      #- /data/mastodon/public/robots.txt:/mastodon/public/robots.txt:ro # Uncomment if you have a data directory - comment the local line if that's the case
 
   streaming:
     container_name: 'mastodon-streaming'
@@ -106,7 +109,7 @@ services:
       - default
     volumes:
       - ./system:/mastodon/public/system
-      # - /data/mastodon/system:/mastodon/public/system # Uncomment if you have a data directory - uncomment the local line if that's the case
+      # - /data/mastodon/system:/mastodon/public/system # Uncomment if you have a data directory - comment the local line if that's the case
     healthcheck:
       test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
     ports:
