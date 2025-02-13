@@ -32,20 +32,22 @@ mkdir /opt/mastodon
 
 6. (Optional) Edit the `docker-compose.yml`.
 
-7. Pull the needed images.
+7. Create the public folder and place the `robots.txt` within that folder. (You can also remove the line if you want to use the standard robots.txt of Mastodon)
+
+8. Pull the needed images.
 
 ```bash
 docker compose pull
 ```
 
-8. Create the `public/` (the path must reflect the path in the `docker-compose.yml`) directory and change the ownership to `991:991`.
+9. Create the `public/` (the path must reflect the path in the `docker-compose.yml`) directory and change the ownership to `991:991`.
 
 ```bash
 mkdir public
 chown -R 911:911 public/
 ```
 
-9. Use the mastodon:setup task to generate a basic configuration. Copy the configration the task will output into a file named `.env.production`.
+10. Use the mastodon:setup task to generate a basic configuration. Copy the configration the task will output into a file named `.env.production`.
 
 ```bash
 docker compose exec --rm console rake mastodon:setup
@@ -63,7 +65,7 @@ Redis port: 6379
 Redis password:
 ```
 
-10. (Optional) Enable Elasticsearch (the es service in the docker-compose.yml): Add the following into the `.env.production`.
+11. (Optional) Enable Elasticsearch (the es service in the docker-compose.yml): Add the following into the `.env.production`.
 
 ```
 ES_ENABLED=true
@@ -71,13 +73,13 @@ ES_HOST=es
 ES_PORT=9200
 ```
 
-11. Add the following to the crontab of the root user
+12. Add the following to the crontab of the root user
 
 ```crontab
 0 0 * * * /path/to/auto-cleanup.sh
 ```
 
-12. Start the Mastodon server
+13. Start the Mastodon server
 
 ```bash
 docker compose up -d
