@@ -1,7 +1,7 @@
 # Ghost via docker
 
 > [!NOTE]
-> Uptime Kuma is developed by louislam and the licence of Uptime Kuma is applicable for this.
+> Ghost is developed by the Ghost Foundation and the licence of Ghost is applicable for this.
 
 ## How to setup?
 
