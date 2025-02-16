@@ -1,0 +1,49 @@
+services:
+  shlink:
+    image: shlinkio/shlink:stable
+    restart: always
+    environment:
+      - TZ="Europe/Berlin"
+      - DEFAULT_DOMAIN=short.link
+      - IS_HTTPS_ENABLED=true
+      - GEOLITE_LICENSE_KEY=geolite_key
+      - DB_DRIVER=maria
+      - DB_USER=shlink
+      - DB_NAME=shlink
+      - DB_PASSWORD=changeme
+      - DB_HOST=database
+      - SHELL_VERBOSITY=3
+    depends_on:
+      - database
+    ports:
+      - 8181:8080
+    networks:
+      - shlink_proxy
+
+  database:
+    image: mariadb:10.8
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=changemeRoot
+      - MARIADB_DATABASE=shlink
+      - MARIADB_USER=shlink
+      - MARIADB_PASSWORD=changeme
+    volumes:
+      - /home/phoenix/docker/shlink/db_data:/var/lib/mysql
+    networks:
+      - shlink_proxy
+
+  shlink-web-client:
+    image: shlinkio/shlink-web-client:stable
+    restart: always
+    volumes:
+      - /home/phoenix/docker/shlink/servers.json:/usr/share/nginx/html/servers.json
+    depends_on:
+      - shlink
+    ports:
+      - 8182:8080
+    networks:
+      - shlink_proxy
+
+networks:
+  shlink_proxy:
