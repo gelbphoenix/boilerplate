@@ -1,0 +1,29 @@
+services:
+  ghost:
+    image: ghost:5-alpine
+    restart: always
+    ports:
+      - 2368:2368
+    environment:
+      url: https://blog.example.com
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: changeMe
+      database__connection__database: ghost
+    volumes:
+      - /data/ghost/content:/var/lib/ghost/content
+    networks:
+      - proxy
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: changeMe
+    volumes:
+      - /data/ghost/db:/var/lib/mysql
+    networks:
+      - proxy
+
+networks:
+  proxy:
