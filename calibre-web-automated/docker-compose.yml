@@ -13,7 +13,7 @@ services:
       - /opt/cwa/library:/calibre-library
       #- /data/cwa/library:/calibre-library # Uncomment if you have a data volume
     ports:
-      - 8083:8083
+      - 8083:8083 # Change only left side if you want to change the port
     stop_signal: SIGINT
     stop_grace_period: 15s
     healthcheck:

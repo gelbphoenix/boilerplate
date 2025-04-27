@@ -16,7 +16,7 @@
 
 1. Move or copy the `docker-compose.yml` into the directory where Uptime Kuma shall be
 2. Edit the `docker-compose.yml`. Change the TZ value to **YOUR** time zone.
-3. (If you use the Caddy web server) Copy the content of `calibre-web-automated` in a way that Caddy can use it. Change `example.com` to your domain. (Either directly into `/etc/caddy/Caddyfile` or with `sites-available/` and `sites-enabled/` folders in `/etc/caddy/`)
+3. (If you use the Caddy web server) Copy the content of `calibre-web-automated` in a way that Caddy can use it. Change `[YOUR CALIBRE-WEB AUTOMATED DOMAIN]` to your domain. (Either directly into `/etc/caddy/Caddyfile` or with `sites-available/` and `sites-enabled/` folders in `/etc/caddy/`)
 4. Start Calibre-Web Automated
 
 ```bash

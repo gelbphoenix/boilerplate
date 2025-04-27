@@ -1,12 +1,7 @@
-blog.example.com {
-	header {
-		-Server
-    Strict-Transport-Security "max-age=31536000; includeSubDomains"
-    X-Content-Type-Options "nosniff"
-		X-Frame-Options "sameorigin"
-    X-XSS-Protection "1; mode=block"
-    Referrer-Policy "no-referrer"
-	}
+[YOUR CALIBRE-WEB AUTOMATED DOMAIN] {
+  encode gzip
 
-	reverse_proxy localhost:2368
+  reverse_proxy localhost:8083 {
+    header_up X-Scheme https
+  }
 }
