@@ -19,7 +19,7 @@
 2. Change the `changeMe` value in the `docker-compose.yml` to a strong password and `https://blog.example.com` to your domain
 3. (Optional) Edit the `docker-compose.yml`
 4. (If you use the Caddy web server) Copy the content of `ghost` in a way that Caddy can use it. Change `example.com` to your domain. (Either directly into `/etc/caddy/Caddyfile` or with `sites-available/` and `sites-enabled/` folders in `/etc/caddy/`)
-5. Start Uptime Kuma and complete setup in the browser
+5. Start Ghost and complete setup in the browser
 
 ```bash
 docker compose up -d
