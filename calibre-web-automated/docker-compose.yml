@@ -1,0 +1,23 @@
+services:
+  calibre-web-automated:
+    container_name: calibre-web-automated
+    image: crocodilestick/calibre-web-automated:latest
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - /opt/cwa/config:/config
+      - /opt/cwa/ingest:/cwa-book-ingest
+      - /opt/cwa/library:/calibre-library
+      #- /data/cwa/library:/calibre-library # Uncomment if you have a data volume
+    ports:
+      - 8083:8083
+    stop_signal: SIGINT
+    stop_grace_period: 15s
+    healthcheck:
+      test: curl --fail -m 5 http://localhost:8083/login || exit 1
+      interval: 60s
+      timeout: 10s
+      retries: 2
