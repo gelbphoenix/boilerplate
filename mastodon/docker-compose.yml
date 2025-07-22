@@ -27,11 +27,7 @@
 
   console:
     container_name: 'mastodon-console'
-<<<<<<< HEAD
-    image: ghcr.io/mastodon/mastodon:v4.3.7 # Replace with other when needed
-=======
     image: ghcr.io/mastodon/mastodon:v4.4.1 # Replace with other when needed
->>>>>>> 93d3763 (Update Mastodon images to version 4.4.1 in docker-compose.yml)
     restart: 'no'
     env_file: .env.production
     command: /bin/bash
@@ -46,11 +42,7 @@
 
   web:
     container_name: 'mastodon-web'
-<<<<<<< HEAD
-    image: ghcr.io/mastodon/mastodon:v4.3.7 # Replace with other when needed
-=======
     image: ghcr.io/mastodon/mastodon:v4.4.1 # Replace with other when needed
->>>>>>> 93d3763 (Update Mastodon images to version 4.4.1 in docker-compose.yml)
     restart: unless-stopped
     env_file: .env.production
     command: bundle exec puma -C config/puma.rb
@@ -76,11 +68,7 @@
 
   streaming:
     container_name: 'mastodon-streaming'
-<<<<<<< HEAD
-    image: ghcr.io/mastodon/mastodon-streaming:v4.3.7 # Replace with other tag when needed
-=======
     image: ghcr.io/mastodon/mastodon-streaming:v4.4.1 # Replace with other tag when needed
->>>>>>> 93d3763 (Update Mastodon images to version 4.4.1 in docker-compose.yml)
     restart: unless-stopped
     env_file: .env.production
     environment:
@@ -99,11 +87,7 @@
 
   sidekiq:
     container_name: 'mastodon-sidekiq'
-<<<<<<< HEAD
-    image: ghcr.io/mastodon/mastodon:v4.3.7
-=======
     image: ghcr.io/mastodon/mastodon:v4.4.1 # Replace with other tag when needed
->>>>>>> 93d3763 (Update Mastodon images to version 4.4.1 in docker-compose.yml)
     restart: unless-stopped
     env_file: .env.production
     environment:
