@@ -1,6 +1,7 @@
 # Calibre-Web Automated via docker
 
-> [!NOTE] > [Calibre-Web Automated](https://github.com/crocodilestick/Calibre-Web-Automated) is developed by [crocodilestick](https://github.com/crocodilestick) and the licence of the project is applicable for this.
+> [!NOTE]
+> [Calibre-Web Automated](https://github.com/crocodilestick/Calibre-Web-Automated) is developed by [crocodilestick](https://github.com/crocodilestick) and the licence of the project is applicable for this.
 
 ## How to setup?
 
