@@ -1,0 +1,67 @@
+services:
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: openwebui
+    restart: unless-stopped
+    ports:
+      - '3000:8080'
+    volumes:
+      - ./openwebui-data:/app/backend/data
+    environment:
+      - WEBUI_URL={URL:-http://localhost:3000}
+      - WEBUI_SECRET_KEY={SECRET_KEY:-t0p-s3cr3t-k3y}
+      - DEFAULT_LOCALE={LOCALE:-en}
+      - OLLAMA_BASE_URL={OLLAMA_URL}
+      - ENABLE_RAG_LOCAL_WEB_FETCH={LOCAL_WEB_FETCH:-true}
+      - CONTENT_EXTRACTION_ENGINE={CONTENT_EXTRACTION_ENGINE:-tika}
+      - TIKA_SERVER_URL={TIKA_SERVER:-http://tika:9998}
+      - ENABLE_WEB_SEARCH={WEB_SEARCH:-true}
+      - WEB_SEARCH_ENGINE={SEARCH_ENGINE:-searxng}
+      - SEARXNG_QUERY_URL={SEARXNG_URL:-http://searxng:8080/search}
+      - WEB_LOADER_ENGINE={WEB_LOADER_ENGINE:-playwright}
+      - PLAYWRIGHT_WS_URL={PLAYWRIGHT_URL:-ws://playwright:3000}
+      - REDIS_URL={REDIS_URL:-redis://valkey:6379}
+
+  tika:
+    image: apache/tika:latest-full
+    container_name: tika
+    restart: unless-stopped
+    ports:
+      - '9998:9998'
+    depends_on:
+      - openwebui
+
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    restart: unless-stopped
+    ports:
+      - '8008:8080'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./searxng:/etc/searxng
+    environment:
+      - PUID={PUID:-1000}
+      - PGID={PGID:-1000}
+      - SEARXNG_HOSTNAME={SEARXNG_HOSTNAME:-localhost:8008}
+    depends_on:
+      - openwebui
+
+  valkey:
+    image: docker.io/valkey/valkey:8-alpine
+    container_name: valkey
+    restart: unless-stopped
+    command: valkey-server --save 30 1 --loglevel warning
+    volumes:
+      - ./valkey:/data
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '1m'
+        max-file: '1'
+
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.49.1-noble
+    container_name: playwright
+    command: npx -y playwright@1.49.1 run-server --port 3000 --host 0.0.0.0
