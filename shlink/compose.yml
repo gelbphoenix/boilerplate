@@ -21,7 +21,7 @@ services:
       - shlink_proxy
 
   database:
-    image: mariadb:10.8
+    image: mariadb:10.11
     restart: always
     environment:
       - MARIADB_ROOT_PASSWORD=changemeRoot
