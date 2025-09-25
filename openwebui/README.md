@@ -1,6 +1,7 @@
 # Open WebUI via docker
 
-> [!NOTE] > [Open WebUI](https://github.com/open-webui/open-webui) is developed by [Open WebUI](https://github.com/open-webui) and the licence of the project is applicable for this.
+> [!NOTE]
+> [Open WebUI](https://github.com/open-webui/open-webui) is developed by [Open WebUI](https://github.com/open-webui) and the licence of the project is applicable for this.
 
 ## How to setup?
 
