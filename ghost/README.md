@@ -10,17 +10,27 @@
 - A computer on which this can be installed (can be a Raspberry Pi or a small VPS)
 - A Linux OS (recommended: Ubuntu or Debian)
 - Docker (v27.3.1 or higher) and Docker Compose (v2.29.7 or higher)
-- a web server (I recommend [caddy](https://caddyserver.com/))
 - A domain for your Ghost instance
+- git
 
 ### Setup
 
-1. Move or copy the `docker-compose.yml` into the directory where Uptime Kuma shall be
-2. Change the `changeMe` value in the `docker-compose.yml` to a strong password and `https://blog.example.com` to your domain
-3. (Optional) Edit the `docker-compose.yml`
-4. (If you use the Caddy web server) Copy the content of `ghost` in a way that Caddy can use it. Change `example.com` to your domain. (Either directly into `/etc/caddy/Caddyfile` or with `sites-available/` and `sites-enabled/` folders in `/etc/caddy/`)
-5. Start Ghost and complete setup in the browser
+1. Clone the official docker-ghost repo from Github with git
+
+```bash
+git clone https://github.com/TryGhost/ghost-docker
+# or via ssh
+git clone git@github.com:TryGhost/ghost-docker.git
+```
+
+2. Copy the here included `.env` into the cloned repo folder and replace [GHOST_DOMAIN] with your domain.
+
+3. Follow the steps from `TINYBIRD.md` if you want to use Ghost's included analytic tools. (If not remove "analytics," from the COMPOSE_PROFILES variable and comment the Tinybird variables out in .env)
+
+4. Start Ghost
 
 ```bash
 docker compose up -d
 ```
+
+4. Finish the setup in the Browser under `https://[GHOST_DOMAIN]/ghost`
