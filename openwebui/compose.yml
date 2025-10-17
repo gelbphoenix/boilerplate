@@ -62,6 +62,6 @@ services:
         max-file: '1'
 
   playwright:
-    image: mcr.microsoft.com/playwright:v1.49.1-noble
+    image: mcr.microsoft.com/playwright:v1.56.1-noble
     container_name: playwright
     command: npx -y playwright@1.49.1 run-server --port 3000 --host 0.0.0.0
