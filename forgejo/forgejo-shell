@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -z "$SSH_ORIGINAL_COMMAND" ]; then
+  echo "Hey there! You've successfully authenticated, but Forgejo does not provide shell access."
+  exit 1
+fi
+
+exec /usr/bin/docker exec -i -u git --env SSH_ORIGINAL_COMMAND="$SSH_ORIGINAL_COMMAND" forgejo sh "$@"

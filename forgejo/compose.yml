@@ -1,0 +1,62 @@
+services:
+  server:
+    image: codeberg.org/forgejo/forgejo:${FORGEJO_VERSION}
+    container_name: forgejo
+    restart: unless-stopped
+    environment:
+      - USER_UID=${USERID}
+      - USER_GID=${GROUPID}
+
+      # Forgejo configuration specific (more infos at https://forgejo.org/docs/latest/admin/config-cheat-sheet/)
+      - FORGEJO__database__DB_TYPE=postgres
+      - FORGEJO__database__HOST=db:5432
+      - FORGEJO__database__NAME=${DB_NAME}
+      - FORGEJO__database__USER=${DB_USER}
+      - FORGEJO__database__PASSWD=${DB_PASS}
+      - FORGEJO__cache__ADAPTER=redis
+      - FORGEJO__cache__HOST=redis://valkey:6379/0
+      - FORGEJO__picture__ENABLE_FEDERATED_AVATAR=true
+      - FORGEJO__federation__ENABLED=true
+      - FORGEJO__server__SSH_CREATE_AUTHORIZED_KEYS_FILE=false
+    networks:
+      - forgejo
+    volumes:
+      - ./data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - '25118:3000'
+    depends_on:
+      - db
+      - valkey
+
+  db:
+    image: postgres:14
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    networks:
+      - forgejo
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+  valkey:
+    image: docker.io/valkey/valkey:8-alpine
+    container_name: valkey
+    restart: unless-stopped
+    command: valkey-server --save 30 1 --loglevel warning
+    volumes:
+      - ./valkey:/data
+    networks:
+      - forgejo
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '1m'
+        max-file: '1'
+
+networks:
+  forgejo:
+    external: false

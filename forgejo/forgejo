@@ -1,0 +1,10 @@
+[FORGEJO DOMAIN] {
+  encode zstd gzip
+
+  header {
+    -Server
+    -X-Powered-By
+  }
+
+  reverse_proxy localhost:25118
+}
