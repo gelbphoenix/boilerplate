@@ -11,7 +11,6 @@
 - A Linux OS (recommended: Ubuntu or Debian)
 - Docker (v27.3.1 or higher) and Docker Compose (v2.29.7 or higher)
 - A domain for your Forgejo instance
-- git
 
 ### Setup
 
