@@ -17,7 +17,6 @@ services:
       - FORGEJO__cache__HOST=redis://valkey:6379/0
       - FORGEJO__picture__ENABLE_FEDERATED_AVATAR=true
       - FORGEJO__federation__ENABLED=true
-      - FORGEJO__server__SSH_CREATE_AUTHORIZED_KEYS_FILE=false
     networks:
       - forgejo
     volumes:

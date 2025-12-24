@@ -1,8 +1,41 @@
 #!/bin/bash
 
-if [ -z "$SSH_ORIGINAL_COMMAND" ]; then
-  echo "Hey there! You've successfully authenticated, but Forgejo does not provide shell access."
-  exit 1
-fi
+# Uncomment if you use server.SSH_CREATE_AUTHORIZED_KEYS_FILE=false
+#if [ -z "$SSH_ORIGINAL_COMMAND" ]; then
+#
+#  AK_LINE=$(grep "command=" /opt/forgejo/.ssh/authorized_keys | grep "key-" | head -n1)
+#  KEY_ID=$(echo "$AK_LINE" | sed -n 's/.*key-\([0-9]*\).*/\1/p')
+#
+#  # Default fallbacks
+#  USER_NAME="unknown"
+#  KEY_NAME="unknown"
+#  KEY_TYPE="unknown"
+#  KEY_CONTENT="unknown"
+#
+#  if [ -n "$KEY_ID" ]; then
+#    DB_QUERY=$(docker exec -i forgejo-db-1 psql -U forgejo -d forgejo -t -A -F "|" -c "SELECT u.name, k.name, k.type, k.content FROM public_key k JOIN \"user\" u ON k.owner_id = u.id WHERE k.id = $KEY_ID;")
+#
+#    USER_NAME=$(echo "$DB_QUERY" | cut -d"|" -f1)
+#    KEY_NAME=$(echo "$DB_QUERY" | cut -d"|" -f2)
+#    KEY_TYPE=$(echo "$DB_QUERY" | cut -d"|" -f3)
+#    KEY_CONTENT=$(echo "$DB_QUERY" | cut -d"|" -f4)
+#  fi
+#
+#  case "$KEY_TYPE" in
+#    1)
+#      echo "Hi there, $USER_NAME! You've successfully authenticated with the key $KEY_NAME, but Forgejo does not provide shell access."
+#      ;;
+#    2)
+#      echo "Hi there! You've successfully authenticated with the deploy key named $KEY_NAME, but Forgejo does not provide shell access."
+#      ;;
+#    3)
+#      echo "Hi there! You've successfully authenticated with the principal $KEY_CONTENT, but Forgejo does not provide shell access."
+#      ;;
+#    *)
+#      echo "Hi there, $USER_NAME! You've successfully authenticated, but Forgejo does not provide shell access."
+#      ;;
+#  esac
+#  exit 1
+#fi
 
 exec /usr/bin/docker exec -i -u git --env SSH_ORIGINAL_COMMAND="$SSH_ORIGINAL_COMMAND" forgejo sh "$@"
