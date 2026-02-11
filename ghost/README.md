@@ -34,3 +34,5 @@ docker compose up -d
 ```
 
 4. Finish the setup in the Browser under `https://[GHOST_DOMAIN]/ghost`
+
+If you want or need you can use `social-web-modal` and replace `[GHOST_AP_HANDLE]` with your own handle (which is visible under `https://[GHOST_DOMAIN]/ghost/#/activitypub/profile`)
