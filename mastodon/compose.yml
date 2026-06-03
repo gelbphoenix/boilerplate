@@ -92,7 +92,7 @@ services:
     depends_on:
       - db
       - redis
-      - es
+      #- es
     volumes:
       - /data/mastodon/public/system:/mastodon/public/system
       - /data/mastodon/public/robots.txt:/mastodon/public/robots.txt:ro
