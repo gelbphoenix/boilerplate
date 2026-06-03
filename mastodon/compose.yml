@@ -56,7 +56,7 @@ services:
   #        hard: 65536
 
   console:
-    image: ghcr.io/mastodon/mastodon:v4.5.0
+    image: ghcr.io/mastodon/mastodon:v4.5.10
     container_name: 'mastodon-console'
     env_file: .env.production
     command: /bin/bash
@@ -70,7 +70,7 @@ services:
       - /data/mastodon/public/system:/mastodon/public/system
 
   web:
-    image: ghcr.io/mastodon/mastodon:v4.5.0
+    image: ghcr.io/mastodon/mastodon:v4.5.10
     restart: always
     container_name: 'mastodon-web'
     env_file: .env.production
@@ -98,7 +98,7 @@ services:
       - /data/mastodon/public/robots.txt:/mastodon/public/robots.txt:ro
 
   streaming:
-    image: ghcr.io/mastodon/mastodon-streaming:v4.5.0
+    image: ghcr.io/mastodon/mastodon-streaming:v4.5.10
     restart: always
     container_name: 'mastodon-streaming'
     env_file: .env.production
@@ -121,7 +121,7 @@ services:
       - redis
 
   sidekiq:
-    image: ghcr.io/mastodon/mastodon:v4.5.0
+    image: ghcr.io/mastodon/mastodon:v4.5.10
     restart: always
     container_name: 'mastodon-sidekiq'
     env_file: .env.production
