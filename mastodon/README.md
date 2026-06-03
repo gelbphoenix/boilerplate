@@ -50,7 +50,7 @@ chown -R 911:911 public/
 10. Use the mastodon:setup task to generate a basic configuration. Copy the configration the task will output into a file named `.env.production`.
 
 ```bash
-docker compose exec --rm console rake mastodon:setup
+docker compose run --rm console rake mastodon:setup
 
 # Use for PostgreSQL
 PostgreSQL host: db
