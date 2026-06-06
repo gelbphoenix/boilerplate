@@ -63,6 +63,7 @@ services:
     restart: 'no'
     depends_on:
       - redis
+      - db
     networks:
       - default
       - proxy
