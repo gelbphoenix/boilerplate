@@ -24,13 +24,13 @@
 mkdir /opt/mastodon
 ```
 
-3. Copy `docker-compose.yml` and `auto-cleanup.sh` into that folder. Make the .sh file executeable.
+3. Copy `compose.yml` and `auto-cleanup.sh` into that folder. Make the .sh file executeable.
 
 4. (If you use the Caddy web server) Copy the content of `mastodon` in a way that Caddy can use it. (Either directly into `/etc/caddy/Caddyfile` or with `sites-available/` and `sites-enabled/` folders in `/etc/caddy/`)
 
-5. Change the `/opt/mastodon/docker-compose.yml` in the `auto-cleanup.sh` to reflect the path of your `docker-compose-yml`.
+5. Change the `/opt/mastodon/compose.yml` in the `auto-cleanup.sh` to reflect the path of your `compose.yml`.
 
-6. (Optional) Edit the `docker-compose.yml`.
+6. (Optional) Edit the `compose.yml`.
 
 7. Pull the needed images.
 
@@ -38,7 +38,7 @@ mkdir /opt/mastodon
 docker compose pull
 ```
 
-8. Create the `public/` (the path must reflect the path in the `docker-compose.yml`) directory and change the ownership to `991:991`.
+8. Create the `public/` (the path must reflect the path in the `compose.yml`) directory and change the ownership to `991:991`.
 
 ```bash
 mkdir public
