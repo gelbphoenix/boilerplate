@@ -42,7 +42,7 @@ docker compose pull
 
 ```bash
 mkdir public
-chown -R 911:911 public/
+chown -R 991:991 public/
 ```
 
 9. Move `robots.txt` into the `public/` directory.
